@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="981cbc1192d44925a2e93b898cfdaaa9" Name="Diagram1">
+        <EntityTypeShape EntityType="EmployeeFeedbackSystemModel.EndOfYearFeedback" Width="2.375" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeFeedbackSystemModel.FeedbackAssignment" Width="2" PointX="10.375" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeFeedbackSystemModel.FeedbackCycle" Width="2" PointX="4.125" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeFeedbackSystemModel.MidYearFeedback" Width="2.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeFeedbackSystemModel.Role" Width="1.5" PointX="0.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeFeedbackSystemModel.User" Width="2.125" PointX="2.75" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="EmployeeFeedbackSystemModel.FK_EndOfYearFeedback_ToFeedbackAssignments" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeFeedbackSystemModel.FK_FeedbackAssignments_ToFeedbackCycles" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeFeedbackSystemModel.FK_FeedbackAssignments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeFeedbackSystemModel.FK_MidYearFeedback_ToFeedbackAssignment" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeFeedbackSystemModel.FK_Users_ToRole" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeFeedbackSystemModel.FK_Users_ToUserId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

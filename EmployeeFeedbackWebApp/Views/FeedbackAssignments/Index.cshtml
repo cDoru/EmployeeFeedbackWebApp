@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EmployeeFeedbackWebApp.Models.FeedbackAssignment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Feedback Assignments</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name of Feedback Cycle
+        </th>
+        <th>
+             Name of Assignee
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FeedbackCycle.FeedbackCycleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FeedbackAssignmentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FeedbackAssignmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FeedbackAssignmentId })
+        </td>
+    </tr>
+}
+
+</table>

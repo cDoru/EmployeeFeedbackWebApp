@@ -1,0 +1,89 @@
+﻿@model EmployeeFeedbackWebApp.Models.MidYearFeedback
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@{
+    var users = (List<UserViewModel>)ViewData["MyUsers"];
+    var cycles = (List<FeedbackCycleViewModel>)ViewData["MID"];
+}
+
+<div>
+    <h4>Mid-Year Feedback</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*  @Html.DisplayNameFor(model => model.FeedbackAssignment.FeedbackAssignmentId) *@
+            Assigned To:
+        </dt>
+
+        <dd>
+            @*  @Html.DisplayFor(model => model.FeedbackAssignment.FeedbackAssignmentId) *@
+            @if (@users != null)
+            {
+                foreach (var u in @users)
+                {
+                    if (Model.FeedbackAssignment.FeedbackAssignmentId == u.UserId)
+                    {
+                        @u.FullName
+                    }
+                }
+            }
+        </dd>
+        <dt>
+          @*  @Html.DisplayNameFor(model => model.MidPerfIndicator) *@
+            Mid-Year Performance:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MidPerfIndicator)
+        </dd>
+
+        <dt>
+            @* @Html.DisplayNameFor(model => model.MidCommentsPositive) *@
+            Performance Comments:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MidCommentsPositive)
+        </dd>
+
+        <dt>
+            @* @  @Html.DisplayNameFor(model => model.MidCommentsImprove) *@
+            Improvements:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MidCommentsImprove)
+        </dd>
+
+        <dt>
+         @*   @Html.DisplayNameFor(model => model.MidYearFeedbackCycleId) *@
+            Cycle Name:
+        </dt>
+
+        <dd>
+          @*  @Html.DisplayFor(model => model.MidYearFeedbackCycleId) *@
+            @if (@cycles != null)
+            {
+                foreach (var c in @cycles)
+                {
+                    if (Model.MidYearFeedbackCycleId == c.FeedbackCycleId)
+                    {
+                        @c.FeedbackCycleName
+                    }
+                }
+            }
+        </dd>
+
+
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MidYearFeedbackId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

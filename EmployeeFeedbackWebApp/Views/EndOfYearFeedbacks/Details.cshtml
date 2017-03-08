@@ -1,0 +1,91 @@
+﻿@model EmployeeFeedbackWebApp.Models.EndOfYearFeedback
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+@{ 
+    var users = (List<UserViewModel>)ViewData["MyUsers"];
+    var cycles = (List<FeedbackCycleViewModel>)ViewData["EOY"];
+}
+
+<div>
+    <h4>End of Year Feedback</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*  @Html.DisplayNameFor(model => model.FeedbackAssignment.FeedbackAssignmentId) *@
+            Assigned To:
+        </dt>
+
+        <dd>
+            @*  @Html.DisplayFor(model => model.FeedbackAssignment.FeedbackAssignmentId) *@
+            @if (@users != null)
+            {
+                foreach (var u in @users)
+                {
+                    if (Model.FeedbackAssignment.FeedbackAssignmentId == u.UserId)
+                    {
+                        @u.FullName
+                    }
+                }
+            }
+        </dd>
+        
+        <dt>
+          @*   @Html.DisplayNameFor(model => model.EOYOverallPerf) *@
+            End of Year Overall:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EOYOverallPerf)
+        </dd>
+
+        <dt>
+           @* @Html.DisplayNameFor(model => model.EOYCommentsPositive) *@
+            What Went Well:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EOYCommentsPositive) 
+            
+        </dd>
+
+        <dt>
+          @*   @Html.DisplayNameFor(model => model.EOYCommentsImprove) *@
+            Room for Improvement:
+        </dt>
+
+        <dd>
+          @Html.DisplayFor(model => model.EOYCommentsImprove)
+            
+        </dd>
+
+        <dt>
+          @*  @Html.DisplayNameFor(model => model.EOYFeedbackCycleId) *@
+            Cycle Name:
+        </dt>
+
+        <dd>
+         @*   @Html.DisplayFor(model => model.EOYFeedbackCycleId) *@
+            @if (@cycles != null)
+            {
+                foreach (var c in @cycles)
+                {
+                    if (Model.EOYFeedbackCycleId == c.FeedbackCycleId)
+                    {
+                        @c.FeedbackCycleName
+                    }
+                }
+            }
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EOYFeedbackId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

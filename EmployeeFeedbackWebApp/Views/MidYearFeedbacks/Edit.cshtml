@@ -1,0 +1,78 @@
+﻿@model EmployeeFeedbackWebApp.Models.MidYearFeedback
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>MidYearFeedback</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MidYearFeedbackId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MidYearFeedbackAssignmentId, "MidYearFeedbackAssignmentId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @*  @Html.DropDownList("MidYearFeedbackAssignmentId", null, htmlAttributes: new { @class = "form-control" }) *@
+                @Html.DropDownListFor(model=>model.MidYearFeedbackAssignmentId, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MidYearFeedbackAssignmentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MidPerfIndicator, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MidPerfIndicator, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MidPerfIndicator, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MidCommentsPositive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MidCommentsPositive, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MidCommentsPositive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MidCommentsImprove, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MidCommentsImprove, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MidCommentsImprove, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MidYearFeedbackCycleId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+             @*   @Html.EditorFor(model => model.MidYearFeedbackCycleId, new { htmlAttributes = new { @class = "form-control" } }) *@
+                @Html.DropDownListFor(model=>model.MidYearFeedbackCycleId,null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MidYearFeedbackCycleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

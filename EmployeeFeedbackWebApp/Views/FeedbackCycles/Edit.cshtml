@@ -1,0 +1,93 @@
+﻿@model EmployeeFeedbackWebApp.Models.FeedbackCycle
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    var items = new List<SelectListItem>()
+    {
+        new SelectListItem() { Text = "Mid-Year Review Period", Value = "midyear", Selected = true},
+        new SelectListItem() { Text = "End-of-Year Review Period", Value = "eoy" },
+    };
+
+    var status = new List<SelectListItem>()
+    {
+        new SelectListItem() { Text = "Active", Value = "Active", Selected = true},
+        new SelectListItem() { Text = "Inactive", Value = "Inactive" },
+    };
+
+
+    <div class="form-horizontal">
+        <h4>FeedbackCycle</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.FeedBackCycleId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeedbackCycleName, "Feedback Cycle Name:" , htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FeedbackCycleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FeedbackCycleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+@*
+    <div class="form-group">
+        @Html.LabelFor(model => model.MidYearFeedbackCycleId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MidYearFeedbackCycleId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MidYearFeedbackCycleId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EOYFeedbackCycleId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EOYFeedbackCycleId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EOYFeedbackCycleId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+*@
+      
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, "Active / Inactive?:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IsActive, status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReviewPeriodType, "Reivew Period Type:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ReviewPeriodType, items, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReviewPeriodType, "", new { @class = "text-danger" })
+
+                @*
+                @BootstrapHtml.Dropdown("dropdownMenu1", items, "Dropdown")
+                *@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

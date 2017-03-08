@@ -1,0 +1,87 @@
+﻿@model IEnumerable<EmployeeFeedbackWebApp.Models.MidYearFeedback>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{
+    var users = (List<UserViewModel>)ViewData["MyUsers"];
+    var cycles = (List<FeedbackCycleViewModel>)ViewData["MID"];
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+         @*   @Html.DisplayNameFor(model => model.MidPerfIndicator) *@
+            Mid-Year Performance
+        </th>
+        <th>
+         @*   @Html.DisplayNameFor(model => model.MidCommentsPositive) *@
+            Performance Comments
+        </th>
+        <th>
+          @*  @Html.DisplayNameFor(model => model.MidCommentsImprove) *@
+            Improvements
+        </th>
+        <th>
+         @*   @Html.DisplayNameFor(model => model.MidYearFeedbackCycleId) *@
+            Cycle Name
+        </th>
+        <th>
+           @*  @Html.DisplayNameFor(model => model.FeedbackAssignment.FeedbackAssignmentId) *@
+            Assigned To
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MidPerfIndicator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MidCommentsPositive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MidCommentsImprove)
+        </td>
+        <td>
+           @* @Html.DisplayFor(modelItem => item.MidYearFeedbackCycleId) *@
+            @if(@cycles != null)
+            {
+                foreach(var c in @cycles)
+                {
+                    if(item.MidYearFeedbackCycleId == c.FeedbackCycleId)
+                    {
+                        @c.FeedbackCycleName
+                    }
+                }
+            }
+        </td>
+        <td>
+            @*  @Html.DisplayFor(modelItem => item.FeedbackAssignment.FeedbackAssignmentId) *@
+            @if(@users != null)
+            {
+                foreach(var u in @users)
+                {
+                    if(item.FeedbackAssignment.FeedbackAssignmentId == u.UserId)
+                    {
+                        @u.FullName
+                    }
+                }
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MidYearFeedbackId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MidYearFeedbackId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MidYearFeedbackId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,34 @@
+﻿@model EmployeeFeedbackWebApp.Models.FeedbackAssignment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Feedback Assignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Feedback Cycle Name:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeedbackCycle.FeedbackCycleName)
+        </dd>
+
+        <dt>
+          Name of Assignee:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName) @Html.DisplayFor(model => model.User.LastName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FeedbackAssignmentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

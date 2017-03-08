@@ -1,0 +1,79 @@
+﻿@model EmployeeFeedbackWebApp.Models.EndOfYearFeedback
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>EndOfYearFeedback</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.EOYFeedbackId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EOYFeedbackAssignmentId, "Assigned To:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*     @Html.DropDownList("EOYFeedbackAssignmentId", null, htmlAttributes: new { @class = "form-control" }) *@
+                @Html.DropDownListFor(model => model.EOYFeedbackAssignmentId, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EOYFeedbackAssignmentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EOYOverallPerf, "End of Year Overall:", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EOYOverallPerf, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EOYOverallPerf, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EOYCommentsPositive, "What Went Well:", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.EOYCommentsPositive, new { htmlAttributes = new { @class = "form-control" } }) *@
+                @Html.TextAreaFor(model => model.EOYCommentsPositive,12,55,null)
+                @Html.ValidationMessageFor(model => model.EOYCommentsPositive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EOYCommentsImprove, "Room for Improvement:", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+              @*  @Html.EditorFor(model => model.EOYCommentsImprove, new { htmlAttributes = new { @class = "form-control" } }) *@
+                @Html.TextAreaFor(model => model.EOYCommentsImprove, 12, 55, null)
+                @Html.ValidationMessageFor(model => model.EOYCommentsImprove, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+          @*  @Html.LabelFor(model => model.EOYFeedbackCycleId, htmlAttributes: new { @class = "control-label col-md-2" }) *@
+            @Html.LabelFor(model => model.EOYFeedbackCycleId, "Cycle Name:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.EOYFeedbackCycleId, new { htmlAttributes = new { @class = "form-control" } }) *@
+                @Html.DropDownListFor(model=>model.EOYFeedbackCycleId, null, htmlAttributes: new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.EOYFeedbackCycleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

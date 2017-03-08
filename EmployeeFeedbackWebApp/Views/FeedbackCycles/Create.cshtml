@@ -1,0 +1,103 @@
+﻿@model EmployeeFeedbackWebApp.Models.FeedbackCycle
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@* This allows us to reference the custom html drop down list for bootstrap below.*@
+@using EmployeeFeedbackWebApp.Classes
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+
+    @*Creating the drop down list entries below*@
+var items = new List<SelectListItem>()
+    {
+        new SelectListItem() { Text = "Mid-Year Review Period", Value = "midyear", Selected = true},
+        new SelectListItem() { Text = "End-of-Year Review Period", Value = "eoy" },
+    };
+
+var status = new List<SelectListItem>()
+    {
+        new SelectListItem() { Text = "Active", Value = "Active", Selected = true},
+        new SelectListItem() { Text = "Inactive", Value = "Inactive" },
+    };
+
+
+    <div class="form-horizontal">
+        <h4>FeedbackCycle</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @* For now, leave FeedbackCycleId visible.  Later on I will want to turn it into a hidden control*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeedBackCycleId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FeedBackCycleId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FeedBackCycleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeedbackCycleName, "Name of Cycle:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FeedbackCycleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FeedbackCycleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!-- 
+        <div class="form-group">
+            @Html.LabelFor(model => model.MidYearFeedbackCycleId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MidYearFeedbackCycleId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MidYearFeedbackCycleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EOYFeedbackCycleId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EOYFeedbackCycleId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EOYFeedbackCycleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, "Active / Inactive?:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IsActive, status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReviewPeriodType, "Reivew Period Type:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ReviewPeriodType, items, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReviewPeriodType, "", new { @class = "text-danger" })
+
+               @*
+    @BootstrapHtml.Dropdown("dropdownMenu1", items, "Dropdown")
+            *@    
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
